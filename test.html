@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spring Test</title>
+</head>
+<body>
+
+<button onclick="sendEvent()">Create Event</button>
+
+<script>
+    async function sendEvent() {
+
+        const response = await fetch("http://localhost:8080/api/events", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: 4,
+                title: "Web Development Workshop",
+                location: "Lab 2",
+                availableSeats: 100
+            })
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        alert(JSON.stringify(data));
+    }
+</script>
+
+</body>
+</html>
