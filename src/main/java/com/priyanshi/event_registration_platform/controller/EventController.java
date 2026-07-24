@@ -1,10 +1,12 @@
 package com.priyanshi.event_registration_platform.controller;
 
+import com.priyanshi.event_registration_platform.dto.CreateEventRequest;
 import com.priyanshi.event_registration_platform.model.Event;
 import com.priyanshi.event_registration_platform.service.EventService;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Optional;
 import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 public class EventController {
@@ -26,19 +28,19 @@ public class EventController {
     }
 
     @PostMapping("/api/events")
-    public Event createEvent(@RequestBody Event event) {
-        return eventService.createEvent(event);
+    public Event createEvent(@Valid @RequestBody CreateEventRequest request) {
+        return eventService.createEvent(request);
     }
 
     @PutMapping("/api/events/{id}")
     public Event updateEvent(@PathVariable int id,
-                             @RequestBody Event updatedEvent) {
+                             @Valid @RequestBody Event updatedEvent) {
 
         return eventService.updateEvent(id, updatedEvent);
     }
 
     @DeleteMapping("/api/events/{id}")
-    public Event deleteEvent(@PathVariable int id) {
-        return eventService.deleteEvent(id);
+    public void deleteEvent(@PathVariable int id) {
+        eventService.deleteEvent(id);
     }
 }

@@ -1,15 +1,10 @@
-package com.priyanshi.event_registration_platform.model;
-import jakarta.persistence.Entity;
+package com.priyanshi.event_registration_platform.dto;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-@Entity
-public class Event {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+public class CreateEventRequest {
+
     @NotBlank(message = "Title cannot be blank")
     private String title;
 
@@ -19,36 +14,27 @@ public class Event {
     @Positive(message = "Available seats must be greater than 0")
     private int availableSeats;
 
-    public Event() {
-    }
-    public int getId() {
-        return id;
+    public CreateEventRequest() {
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public int getAvailableSeats() {
-        return availableSeats;
-    }
-
-
-    // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getAvailableSeats() {
+        return availableSeats;
     }
 
     public void setAvailableSeats(int availableSeats) {
