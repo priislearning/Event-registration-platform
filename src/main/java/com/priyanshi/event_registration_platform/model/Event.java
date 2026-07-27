@@ -1,15 +1,13 @@
 package com.priyanshi.event_registration_platform.model;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 @Entity
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @NotBlank(message = "Title cannot be blank")
     private String title;
 
@@ -21,7 +19,7 @@ public class Event {
 
     public Event() {
     }
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -39,7 +37,7 @@ public class Event {
 
 
     // Setters
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

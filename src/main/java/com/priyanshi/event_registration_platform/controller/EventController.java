@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.List;
 import jakarta.validation.Valid;
-
+import com.priyanshi.event_registration_platform.dto.EventResponse;
 @RestController
 public class EventController {
 
@@ -18,25 +18,25 @@ public class EventController {
     }
 
     @GetMapping("/api/events")
-    public List<Event> getEvents() {
+    public List<EventResponse> getEvents() {
         return eventService.getAllEvents();
     }
 
     @GetMapping("/api/events/{id}")
-    public Event getEvent(@PathVariable int id) {
+    public EventResponse getEvent(@PathVariable int id) {
         return eventService.getEventById(id);
     }
 
     @PostMapping("/api/events")
-    public Event createEvent(@Valid @RequestBody CreateEventRequest request) {
+    public EventResponse createEvent(@Valid @RequestBody CreateEventRequest request) {
         return eventService.createEvent(request);
     }
 
     @PutMapping("/api/events/{id}")
-    public Event updateEvent(@PathVariable int id,
-                             @Valid @RequestBody Event updatedEvent) {
+    public EventResponse updateEvent(@PathVariable int id,
+                             @Valid @RequestBody CreateEventRequest request) {
 
-        return eventService.updateEvent(id, updatedEvent);
+        return eventService.updateEvent(id, request);
     }
 
     @DeleteMapping("/api/events/{id}")

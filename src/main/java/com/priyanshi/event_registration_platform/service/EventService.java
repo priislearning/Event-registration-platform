@@ -32,8 +32,8 @@ public class  EventService {
     }
 
 
-    public List<Event> getAllEvents() {
-        return repository.findAll();
+    public List<EventResponse> getAllEvents() {
+        return repository.findAll().stream().map(event->mapper.toResponse(event)).toList();
     }
 
     public EventResponse getEventById(int id) {
