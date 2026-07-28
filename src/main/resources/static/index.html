@@ -6,12 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Event Registration Platform</title>
+    <title>Eventify</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -21,19 +24,31 @@
 
 <div class="sidebar">
 
-    <h2>EVENTIFY</h2>
+    <div>
 
-    <button class="active">
-        Users
-    </button>
+        <h2>EVENTIFY</h2>
 
-    <button>
-        Events
-    </button>
+        <p class="subtitle">
+            Admin Dashboard
+        </p>
 
-    <button>
-        Registrations
-    </button>
+    </div>
+
+    <nav>
+
+        <button class="active">
+            Users
+        </button>
+
+        <button>
+            Events
+        </button>
+
+        <button>
+            Registrations
+        </button>
+
+    </nav>
 
 </div>
 
@@ -41,64 +56,147 @@
 
     <div class="top">
 
-        <h1>
-            Users Dashboard
-        </h1>
+        <div>
 
-        <button id="openModal">
+            <h1>Users Dashboard</h1>
+
+            <p>
+                Manage users of your event platform
+            </p>
+
+        </div>
+
+        <button id="openModal" class="primary-btn">
             + Add User
         </button>
 
     </div>
 
-    <table>
+    <!-- Dashboard Cards -->
 
-        <thead>
+    <div class="stats">
 
-        <tr>
+        <div class="stat-card">
 
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
+            <span>Total Users</span>
 
-        </tr>
+            <h2 id="userCount">
+                0
+            </h2>
 
-        </thead>
+        </div>
 
-        <tbody id="userTable">
+        <div class="stat-card">
 
-        </tbody>
+            <span>Total Events</span>
 
-    </table>
+            <h2 id="eventCount">
+                0
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- Toolbar -->
+
+    <div class="toolbar">
+
+        <input
+                type="text"
+                id="searchInput"
+                placeholder="🔍 Search users...">
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="userTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
+
+<!-- Modal -->
 
 <div class="modal" id="modal">
 
     <div class="card">
 
-        <h2>Create User</h2>
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Create User
+            </h2>
+
+            <button
+                    id="closeModal"
+                    class="close-btn">
+
+                ✕
+
+            </button>
+
+        </div>
 
         <input
                 id="name"
-                placeholder="Full Name">
+                placeholder="Enter full name">
 
         <input
                 id="email"
-                placeholder="Email">
+                placeholder="Enter email address">
 
-        <button id="createBtn">
+        <div class="modal-actions">
 
-            Create User
+            <button
+                    id="cancelBtn"
+                    class="secondary-btn">
 
-        </button>
+                Cancel
+
+            </button>
+
+            <button
+                    id="createBtn"
+                    class="primary-btn">
+
+                Save User
+
+            </button>
+
+        </div>
 
     </div>
 
 </div>
 
 <script src="js/app.js"></script>
+
+<script>
+    lucide.createIcons();
+</script>
 
 </body>
 

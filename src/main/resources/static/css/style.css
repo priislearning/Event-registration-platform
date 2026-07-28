@@ -7,8 +7,8 @@
 
 body{
     display:flex;
-    background:#0f172a;
-    color:white;
+    background:#f4f7fb;
+    color:#1e293b;
     min-height:100vh;
 }
 
@@ -16,15 +16,16 @@ body{
 
 .sidebar{
     width:250px;
-    background:#111827;
+    background:white;
+    border-right:1px solid #e5e7eb;
     border-right:1px solid rgba(255,255,255,.08);
     display:flex;
     flex-direction:column;
-    padding:40px 25px;
+    padding:50px 28px;
 }
 
 .sidebar h2{
-    margin-bottom:50px;
+    margin-bottom:8px;
     font-size:28px;
     letter-spacing:2px;
 }
@@ -33,7 +34,7 @@ body{
     margin-bottom:15px;
     border:none;
     background:transparent;
-    color:#94a3b8;
+    color:#64748b;
     padding:15px;
     border-radius:12px;
     text-align:left;
@@ -43,15 +44,84 @@ body{
 }
 
 .sidebar button:hover{
-    background:#1e293b;
-    color:white;
+    background:#eff6ff;
+    color:#2563eb;
 }
 
 .sidebar .active{
     background:linear-gradient(135deg,#2563eb,#3b82f6);
     color:white;
 }
+.stats{
 
+    display:flex;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.stat-card{
+
+    flex:1;
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+}
+
+.stat-card span{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.stat-card h2{
+
+    margin-top:10px;
+
+    font-size:34px;
+
+    color:#2563eb;
+
+}
+.toolbar{
+
+    margin-bottom:25px;
+
+}
+
+.toolbar input{
+
+    width:100%;
+    max-width:450px;
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    border:1px solid #d1d5db;
+
+    background:white;
+
+    outline:none;
+
+    font-size:15px;
+
+}
+
+.toolbar input:focus{
+
+    border-color:#2563eb;
+
+}
 /* Main */
 
 .main{
@@ -91,28 +161,40 @@ body{
 
 /* Table */
 
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:#111827;
+
+.table-container{
+
+    background:white;
+
     border-radius:18px;
+
     overflow:hidden;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
 }
 
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
 thead{
-    background:#1e293b;
+    background:#f8fafc;
 }
 
 th{
     text-align:left;
     padding:20px;
-    color:#cbd5e1;
+    color:#475569;
     font-weight:600;
 }
 
 td{
     padding:20px;
-    border-top:1px solid rgba(255,255,255,.06);
+    border-top:1px solid #edf2f7;
 }
 
 tr{
@@ -120,21 +202,59 @@ tr{
 }
 
 tbody tr:hover{
-    background:#1e293b;
+    background:#f8fafc;
 }
 
-td button{
-    border:none;
-    background:#ef4444;
-    color:white;
-    padding:9px 18px;
-    border-radius:8px;
+.actions{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.edit-btn{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    border:1px solid #bfdbfe;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
     cursor:pointer;
-    transition:.25s;
+
 }
 
-td button:hover{
-    background:#dc2626;
+.edit-btn:hover{
+
+    background:#dbeafe;
+
+}
+
+.delete-btn{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    border:1px solid #fecaca;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+    background:#fee2e2;
+
 }
 
 /* Modal */
@@ -151,25 +271,96 @@ td button:hover{
 
 .card{
     width:420px;
-    background:#111827;
+    background:white;
+
+    color:#1e293b;
     border:1px solid rgba(255,255,255,.08);
     border-radius:24px;
-    padding:35px;
+    padding:40px;
     animation:popup .3s ease;
 }
 
 .card h2{
-    margin-bottom:25px;
+    margin-bottom:30px;
+}
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
 }
 
+.close-btn{
+
+    width:40px !important;
+
+    height:40px;
+
+    background:transparent !important;
+
+    border:none;
+
+    color:#94a3b8;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    padding:0 !important;
+}
+
+.close-btn:hover{
+
+    color:white;
+
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+.secondary-btn{
+
+    background:#1e293b !important;
+
+    color:white;
+
+    width:auto !important;
+
+    padding:14px 22px !important;
+
+}
+
+.primary-btn{
+
+    width:auto !important;
+
+    padding:14px 22px !important;
+
+}
 .card input{
     width:100%;
     margin-bottom:18px;
     padding:15px;
-    background:#1e293b;
-    border:none;
     border-radius:12px;
-    color:white;
+    background:#f8fafc;
+
+    color:#1e293b;
+
+    border:1px solid #e2e8f0;
     outline:none;
     font-size:15px;
 }
