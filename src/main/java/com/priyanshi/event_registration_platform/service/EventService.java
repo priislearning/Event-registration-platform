@@ -18,7 +18,7 @@ public class  EventService {
         Optional<Event> optional = repository.findById(id);
 
         if (optional.isEmpty()) {
-            throw new EventNotFoundException("Event with id " + id + " not found");
+            throw new EventNotFoundException(id);
         }
 
         return optional.get();

@@ -39,14 +39,14 @@ public class UserService {
     public UserResponse getUserById(Integer id) {
 
         User user = repository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
+                .orElseThrow(() -> new UserNotFoundException(id));
         return mapper.toResponse(user);
     }
     public UserResponse updateUser(Integer id, CreateUserRequest request) {
 
         User user = repository.findById(id)
                 .orElseThrow(() ->
-                        new UserNotFoundException("User not found with id " + id));
+                        new UserNotFoundException(id));
 
         user.setName(request.getName());
         user.setEmail(request.getEmail());
@@ -59,7 +59,7 @@ public class UserService {
 
         User user = repository.findById(id)
                 .orElseThrow(() ->
-                        new UserNotFoundException("User not found with id " + id));
+                        new UserNotFoundException(id));
 
         repository.delete(user);
     }

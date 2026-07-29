@@ -7,7 +7,8 @@ import com.priyanshi.event_registration_platform.repository.EventRepository;
 import com.priyanshi.event_registration_platform.repository.RegistrationRepository;
 import com.priyanshi.event_registration_platform.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
+import com.priyanshi.event_registration_platform.exception.UserNotFoundException;
+import com.priyanshi.event_registration_platform.exception.EventNotFoundException;
 @Service
 public class RegistrationService {
 
@@ -33,10 +34,10 @@ public class RegistrationService {
     public Registration registerUser(Integer userId, Integer eventId) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new RuntimeException(userId));
 
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new RuntimeException("Event not found"));
+                .orElseThrow(() -> new RuntimeException(eventId));
 
         Registration registration = new Registration();
 
