@@ -34,10 +34,14 @@ public class RegistrationService {
     public Registration registerUser(Integer userId, Integer eventId) {
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException(userId));
+                .orElseThrow(() -> new RuntimeException("User with id " + userId + " not found"));
 
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new RuntimeException(eventId));
+                .orElseThrow(() -> new RuntimeException("Event with id " + eventId + " not found"));
+        if(registrationRepository.existsByUserIdAndEventId(userId,eventId)){
+            throw new RuntimeException("User with id " + userId + " and event id " + eventId + " already exists");
+        }
+
 
         Registration registration = new Registration();
 
