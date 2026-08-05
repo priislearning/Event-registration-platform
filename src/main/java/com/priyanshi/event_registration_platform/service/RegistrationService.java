@@ -1,5 +1,5 @@
 package com.priyanshi.event_registration_platform.service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.priyanshi.event_registration_platform.model.Event;
 import com.priyanshi.event_registration_platform.model.Registration;
 import com.priyanshi.event_registration_platform.model.User;
@@ -30,7 +30,7 @@ public class RegistrationService {
 
     }
 
-
+    @Transactional
     public Registration registerUser(Integer userId, Integer eventId) {
 
         User user = userRepository.findById(userId)
@@ -41,13 +41,17 @@ public class RegistrationService {
         if(registrationRepository.existsByUserIdAndEventId(userId,eventId)){
             throw new RuntimeException("User with id " + userId + " and event id " + eventId + " already exists");
         }
+        if(event.getAvailableSeats() <= 0){
+            throw new RuntimeException("Event is full");
+        }
 
 
         Registration registration = new Registration();
 
         registration.setUser(user);
         registration.setEvent(event);
-
+        event.setAvailableSeats(event.getAvailableSeats() - 1);
+        eventRepository.save(event);
         return registrationRepository.save(registration);
     }
 }
