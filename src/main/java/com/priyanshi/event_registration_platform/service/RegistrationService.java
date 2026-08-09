@@ -9,6 +9,7 @@ import com.priyanshi.event_registration_platform.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import com.priyanshi.event_registration_platform.exception.UserNotFoundException;
 import com.priyanshi.event_registration_platform.exception.EventNotFoundException;
+import java.util.List;
 @Service
 public class RegistrationService {
 
@@ -53,5 +54,8 @@ public class RegistrationService {
         event.setAvailableSeats(event.getAvailableSeats() - 1);
         eventRepository.save(event);
         return registrationRepository.save(registration);
+    }
+    public List<Registration> getAllRegistrations(){
+        return registrationRepository.findAll();
     }
 }
