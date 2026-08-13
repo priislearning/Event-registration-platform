@@ -1,5 +1,6 @@
 package com.priyanshi.event_registration_platform.controller;
 import com.priyanshi.event_registration_platform.dto.LoginRequest;
+import com.priyanshi.event_registration_platform.dto.LoginResponse;
 import com.priyanshi.event_registration_platform.dto.RegisterRequest;
 import com.priyanshi.event_registration_platform.model.User;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AuthController {
         return authService.register(request);
     }
     @PostMapping("/login")
-    public User login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);
     }
 }

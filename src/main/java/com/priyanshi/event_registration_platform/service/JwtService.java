@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Value;
 import com.priyanshi.event_registration_platform.model.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.security.Keys;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 @Service
 public class JwtService {
@@ -20,5 +23,8 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+    }
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 }
