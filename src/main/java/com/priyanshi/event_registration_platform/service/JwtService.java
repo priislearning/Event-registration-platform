@@ -9,6 +9,7 @@ import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+
 @Service
 public class JwtService {
     @Value("${jwt.secret}")
@@ -26,5 +27,25 @@ public class JwtService {
     }
     private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }
+    private Claims extractAllClaims(String token){//give me a jwt token and i will return all claims stored inside it
+        return Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+    public String extractUsername(String token){
+        return extractAllClaims(token).getSubject();
+    }
+    private Date extractExpiration(String token){
+        return extractAllClaims(token).getExpiration();
+    }
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+    public boolean isTokenValid(String token, User user) {
+        return extractUsername(token).equals(user.getEmail())
+                && !isTokenExpired(token);
     }
 }
