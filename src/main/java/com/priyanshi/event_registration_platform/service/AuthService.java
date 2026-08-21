@@ -5,6 +5,7 @@ import com.priyanshi.event_registration_platform.repository.UserRepository;
 import com.priyanshi.event_registration_platform.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.priyanshi.event_registration_platform.model.Role;
 import com.priyanshi.event_registration_platform.mapper.UserMapper;
 import com.priyanshi.event_registration_platform.dto.LoginResponse;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,8 +26,10 @@ public class AuthService {
         if(userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
-        User user=userMapper.toEntity(request);
+        User user=userMapper.toEntity(request);//convert request data into user object
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.ATTENDEE);
+        user.setEnabled(true);//java turns bedefault every account off
         return userRepository.save(user);
     }
     public LoginResponse login(LoginRequest request) {
